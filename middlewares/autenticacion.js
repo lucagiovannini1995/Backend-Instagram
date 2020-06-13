@@ -12,7 +12,7 @@ exports.verificaToken = function(req, res, next) {
 
     jwt.verify(token, llave, (err, decoded) => {
 
-        console.log(decoded);
+
 
         if (err) {
             return res.status(401).json({
@@ -22,7 +22,25 @@ exports.verificaToken = function(req, res, next) {
             });
         }
 
+        //guardo el usuario obtenido del jwt para usarlo si es necesario
         req.usuario = decoded.usuario;
+
         next();
     });
+}
+
+exports.verificaUsuario = function(req, res, next) {
+
+    var id = req.params.id;
+    var usuario = req.usuario;
+
+    if (usuario._id === id) {
+        next();
+    } else {
+        return res.status(401).json({
+            ok: false,
+            mensaje: 'no es administrador',
+            errors: { message: 'no es administrador, no tiene acceso' }
+        });
+    }
 }

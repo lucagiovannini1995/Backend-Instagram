@@ -32,6 +32,7 @@ rout.post('/', (req, res) => {
             });
         }
 
+        //comparo la contraseña ecryptada con la recibida
         if (!bcrypt.compareSync(body.password, usu.password)) {
             return res.status(400).json({
                 ok: false,
@@ -40,7 +41,9 @@ rout.post('/', (req, res) => {
             });
         }
 
+
         usu.password = ':)';
+
         const token = jwt.sign({ usuario: usu }, llave, { expiresIn: 1440 });
 
 

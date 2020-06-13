@@ -15,12 +15,16 @@ app.use(bodyParser.json())
 
 
 //importar Rutas
-var usuRout = require('./routes/usuario.rout');
-var loginRout = require('./routes/login.rout');
+var usuRout = require('./routes/usuario.routes');
+var loginRout = require('./routes/login.routes');
+var uploadRout = require('./routes/upload.routes');
+var imgRout = require('./routes/imagenes.routes');
 
 //rutas
 app.use('/usuario', usuRout);
 app.use('/login', loginRout);
+app.use('/upload', uploadRout);
+app.use('/img', imgRout);
 
 
 //conexion a la base de datos

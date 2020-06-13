@@ -1,5 +1,6 @@
 var mongoose = require('mongoose');
 
+//plugin de validacion  que verifica los campos unicos
 var uniqueValidator = require('mongoose-unique-validator');
 
 var Schema = mongoose.Schema;

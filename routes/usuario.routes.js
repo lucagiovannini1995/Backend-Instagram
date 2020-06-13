@@ -9,7 +9,7 @@ var autenticacion = require('../middlewares/autenticacion');
 //actualizar Usuario
 //===========================
 
-rout.put('/:id', (req, res) => {
+rout.put('/:id', [autenticacion.verificaToken, autenticacion.verificaUsuario], (req, res) => {
     var id = req.params.id;
     var body = req.body;
 
@@ -83,7 +83,7 @@ rout.delete('/:id', (req, res) => {
 //Obtener Usuario
 //===========================
 
-rout.get('/:id', autenticacion.verificaToken, (req, res) => {
+rout.get('/:id', [autenticacion.verificaToken, autenticacion.verificaUsuario], (req, res) => {
 
     var id = req.params.id;
     Usuario.findById(id, 'nombre nombreUsuario email password', (err, usu) => {
@@ -108,7 +108,7 @@ rout.get('/:id', autenticacion.verificaToken, (req, res) => {
 
 rout.get('/', (req, res) => {
 
-    Usuario.find({}, 'nombre nombreUsuario email password', )
+    Usuario.find({}, 'nombre nombreUsuario email password img', )
         .exec((err, usu) => {
             if (err) {
                 return res.status(500).json({
@@ -130,7 +130,7 @@ rout.get('/', (req, res) => {
 //===========================
 
 
-rout.post('/', autenticacion.verificaToken, (req, res) => {
+rout.post('/', (req, res) => {
 
     var body = req.body;
 
