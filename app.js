@@ -19,12 +19,16 @@ var usuRout = require('./routes/usuario.routes');
 var loginRout = require('./routes/login.routes');
 var uploadRout = require('./routes/upload.routes');
 var imgRout = require('./routes/imagenes.routes');
+var publiRout = require('./routes/publicacion.routes');
+var busquedaRout = require('./routes/busqueda.routes');
 
 //rutas
 app.use('/usuario', usuRout);
 app.use('/login', loginRout);
 app.use('/upload', uploadRout);
 app.use('/img', imgRout);
+app.use('/publicaciones', publiRout);
+app.use('/busqueda', busquedaRout);
 
 
 //conexion a la base de datos
